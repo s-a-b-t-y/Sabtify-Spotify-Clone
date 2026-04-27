@@ -1,0 +1,171 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+}
+
+.left {
+    width: 25vw;
+    padding: 10px;
+}
+
+.right {
+    width: 75vw;
+    /* max-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden; */
+}
+
+.home {}
+
+.home ul li {
+    display: flex;
+    gap: 15px;
+    width: 15px;
+    list-style: none;
+    padding-top: 14px;
+    font-weight: 700;
+}
+
+.heading {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    padding-top: 14px;
+    padding: 23px 14px;
+    font-weight: 700;
+    align-items: center;
+    font-size: 11px;
+}
+
+.heading img {
+    width: 30px;
+}
+
+.library {
+    min-height: 78vh;
+    position: relative;
+}
+
+.footer {
+    display: flex;
+    font-size: 10px;
+    gap: 11px;
+    position: absolute;
+    bottom: 7px;
+}
+
+.footer a {
+    color: grey;
+}
+
+.right {
+    margin: 16px 0px;
+    position: relative;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(34, 34, 34);
+    height: 73px;
+}
+
+.header>* {
+    padding: 20px;
+}
+
+.spotifyPlaylist {
+    padding: 16px;
+}
+
+.cardContainer {
+    margin: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-height: 70vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.card {
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #252525;
+    position: relative;
+}
+
+.card>* {
+    padding-top: 3px;
+}
+
+.card img {
+    width: 100%;
+    object-fit: contain;
+}
+
+.play {
+    position: absolute;
+    bottom: 85px;
+    right: 16px;
+    opacity: 0;
+    transition: all 1s ease-out;
+}
+
+.signbtn {
+    background-color: rgb(34, 34, 34);
+    color: rgb(121, 115, 115);
+    font-weight: bold;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.04s ease;
+}
+
+.buttons>* {
+    margin: 0px 12px;
+    font-size: 15px;
+}
+
+.signbtn:hover {
+    font-size: 0.9rem;
+    color: white;
+}
+
+.logbtn {
+    width: 79px;
+    background-color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    color: black;
+    /* font-weight: bold; */
+    padding: 10px;
+    transition: all 0.04s ease-in;
+}
+
+.logbtn:hover {
+    /* padding: 12px; */
+    font-weight: 700;
+    font-size: 17px;
+}
+
+.playbar {
+    position: absolute;
+    bottom: 0px;
+    background-color: rgb(76, 107, 76);
+    width: 100%;
+    padding: 12px;
+}
+
+.songbutton{
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
