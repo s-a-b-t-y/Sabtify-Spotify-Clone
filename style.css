@@ -159,7 +159,7 @@ body {
 .playbar {
     position: absolute;
     bottom: 0px;
-    background-color: rgb(226, 243, 226);
+    background-color: rgb(168, 85, 247);
     width: 90%;
     padding: 12px;
 }
@@ -174,7 +174,6 @@ body {
     padding: 0px 42px;
 }
 
-.songList ul li{
+.songList ul{
     list-style-type: decimal;
-    display: flex;
 }
