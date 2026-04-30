@@ -11,7 +11,7 @@ async function getSongs() {
     for (let index = 0; index < as.length; index++) {
         const element = as[index];
         if (element.href.endsWith(".mp3")) {
-            songs.push(element.href.split("/").pop());
+            songs.push(element.innerText.split("\\").pop());
         }
     }
     return songs;
@@ -24,7 +24,27 @@ async function main() {
 
     let songUL = document.querySelector(".songList").getElementsByTagName("ul")[0];
     for (const song of songs) {
-        songUL.innerHTML = songUL.innerHTML + `<li>${decodeURIComponent(song)}</li>`;
+        let decoded = decodeURIComponent(song);
+
+        // Split into name and artist
+        let parts = decoded.replace(".mp3", "").split("-");
+        let songName = parts[0]?.trim();
+        let artist = parts[1]?.trim() || "Unknown";
+
+        songUL.innerHTML += `
+    <li>
+        <img class="invert" src="Library/img/music.svg" alt="music">
+
+        <div class="info">
+            <div>${songName}</div>
+            <div>${artist}</div>
+        </div>
+
+        <div class="playNow">
+            <img class="invert" src="Library/img/play.svg" alt="play">
+            <span>Play Now</span>
+        </div>
+    </li>`;
     }
 
     // Code to play first song
