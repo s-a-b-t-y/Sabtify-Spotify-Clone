@@ -20,8 +20,8 @@ async function getSongs() {
 async function main() {
     // Code to list the song
     let songs = await getSongs();
-    console.log(songs);
 
+    // Code for showing all the song in the playlist
     let songUL = document.querySelector(".songList").getElementsByTagName("ul")[0];
     for (const song of songs) {
         let decoded = decodeURIComponent(song);
@@ -31,8 +31,8 @@ async function main() {
         let songName = parts[0]?.trim();
         let artist = parts[1]?.trim() || "Unknown";
 
-        songUL.innerHTML += `
-    <li>
+        songUL.innerHTML += 
+    `<li>
         <img class="invert" src="Library/img/music.svg" alt="music">
 
         <div class="info">
@@ -47,9 +47,7 @@ async function main() {
     </li>`;
     }
 
-    // Code to play first song
-    var audio = new Audio(songs[0]);
-    // audio.play();
+    
 
     audio.addEventListener("loadeddata", () => {
         console.log(audio.duration, audio.currentSrc, audio.currentTime);
