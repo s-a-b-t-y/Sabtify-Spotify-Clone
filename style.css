@@ -141,7 +141,7 @@ body {
 
 .logbtn {
     width: 79px;
-    background-color: white;
+    background-color: rgb(255, 182, 193);
     border-radius: 20px;
     cursor: pointer;
     color: black;
