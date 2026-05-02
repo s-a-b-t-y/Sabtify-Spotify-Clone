@@ -10,6 +10,8 @@ async function main() {
     // Code to list the song
     let songs = await getSongs();
 
+    let audio = new Audio();
+
     // Code for showing all the song in the playlist
     let songUL = document.querySelector(".songList").getElementsByTagName("ul")[0];
     for (const song of songs) {
