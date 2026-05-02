@@ -1,20 +1,9 @@
 async function getSongs() {
-    let a = await fetch("./Library/songs/");
-    let response = await a.text();
-
-    let div = document.createElement("div");
-    div.innerHTML = response;
-    let as = div.getElementsByTagName("a");
-
-    let songs = [];
-
-    for (let index = 0; index < as.length; index++) {
-        const element = as[index];
-        if (element.href.endsWith(".mp3")) {
-            songs.push(element.innerText.split("\\").pop());
-        }
+    const res = await fetch("./Library/songs/songs.json");
+    if (!res.ok) {
+        throw new Error("Failed to load songs.json");
     }
-    return songs;
+    return await res.json();
 }
 
 async function main() {
@@ -33,7 +22,7 @@ async function main() {
 
         songUL.innerHTML += 
     `<li>
-        <img class="invert" src="Library/img/music.svg" alt="music">
+        <img class="invert" src="./Library/img/music.svg" alt="music">
 
         <div class="info">
             <div>${songName}</div>
@@ -41,7 +30,7 @@ async function main() {
         </div>
 
         <div class="playNow">
-            <img class="invert" src="Library/img/play.svg" alt="play">
+            <img class="invert" src="./Library/img/play.svg" alt="play">
             <span>Play Now</span>
         </div>
     </li>`;
