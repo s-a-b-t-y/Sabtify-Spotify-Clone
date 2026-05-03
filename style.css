@@ -248,4 +248,18 @@ body {
     position: relative;
     bottom: 7px;
     left: 0%;
+    transition: left 0.5s;
+}
+
+.songbutton img{
+    cursor: pointer;
+}
+
+.songInfo, .songTime{
+    padding: 0px 12px;
+}
+
+.aboveBar{
+    display: flex;
+    justify-content: space-between;
 }
