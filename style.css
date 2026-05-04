@@ -172,7 +172,7 @@ body {
     gap: 12px;
 }
 
-.songList{
+.songList {
     height: 445px;
     overflow-x: auto;
     overflow-y: scroll;
@@ -231,7 +231,7 @@ body {
     font-size: 12px;
 }
 
-.seekbar{
+.seekbar {
     height: 2px;
     width: 100%;
     border: 2px solid white;
@@ -240,7 +240,7 @@ body {
     bottom: 0px;
 }
 
-.seekbar .circle{
+.seekbar .circle {
     width: 15px;
     height: 15px;
     border-radius: 13px;
@@ -251,15 +251,22 @@ body {
     transition: left 0.5s;
 }
 
-.songbutton img{
+.songbutton img {
     cursor: pointer;
 }
 
-.songInfo, .songTime{
+.songInfo,
+.songTime {
     padding: 0px 12px;
 }
 
-.aboveBar{
+.songTime {
+    color: white;
+    position: relative;
+    z-index: 10;
+}
+
+.aboveBar {
     display: flex;
     justify-content: space-between;
 }

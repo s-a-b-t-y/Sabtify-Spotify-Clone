@@ -8,6 +8,18 @@ async function getSongs() {
 
 let audio = new Audio();
 
+//! Function to convert seconds into minute
+function secondsToMinutesSeconds(seconds) {
+    if (isNaN(seconds) || seconds < 0) {
+        return "00:00";
+    }
+
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+
+    return `${String(minutes).padStart(2, "0")}:${String(remainingSeconds).padStart(2, "0")}`;
+}
+
 const playMusic = (track) => {
     audio.src = "./Library/songs/" + track;
     audio.play();
@@ -22,8 +34,7 @@ async function main() {
 
     // Code to list the song
     let songs = await getSongs();
-
-    // let audio = new Audio();
+    audio.src = songs[0];
 
     // Code for showing all the song in the playlist
     let songUL = document.querySelector(".songList").getElementsByTagName("ul")[0];
@@ -61,10 +72,10 @@ async function main() {
 
     //! attach an event listener to play next & previous song
     play.addEventListener("click", () => {
-        if(audio.paused){
+        if (audio.paused) {
             audio.play();
             play.src = "./Library/img/pause.svg";
-        }else{
+        } else {
             audio.pause();
             play.src = "./Library/img/play.svg"
         }
@@ -73,6 +84,16 @@ async function main() {
     // audio.addEventListener("loadeddata", () => {
     //     console.log(audio.duration, audio.currentSrc, audio.currentTime);
     // })
+
+    //! Time-Update event
+    let songTime = document.querySelector(".songTime");
+
+    audio.addEventListener("timeupdate", () => {
+        if (!isNaN(audio.duration)) {
+            songTime.innerHTML =
+                `${secondsToMinutesSeconds(audio.currentTime)} / ${secondsToMinutesSeconds(audio.duration)}`;
+        }
+    });
 }
 
 main();
