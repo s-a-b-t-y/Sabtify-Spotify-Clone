@@ -20,10 +20,12 @@ function secondsToMinutesSeconds(seconds) {
     return `${String(minutes).padStart(2, "0")}:${String(remainingSeconds).padStart(2, "0")}`;
 }
 
-const playMusic = (track) => {
+const playMusic = (track, pause = false) => {
     audio.src = "./Library/songs/" + track;
-    audio.play();
-    play.src = "./Library/img/pause.svg"  // to change the icon when the song is played.
+    if (!pause) {
+        audio.play();
+        play.src = "./Library/img/pause.svg"  // to change the icon when the song is played.
+    }
 
     document.querySelector(".songInfo").innerHTML = track;
     document.querySelector(".songTime").innerHTML = "00:00 / 00:00";
@@ -34,8 +36,7 @@ async function main() {
 
     // Code to list the song
     let songs = await getSongs();
-    audio.src = songs[0];
-
+    playMusic(songs[0], true);
     // Code for showing all the song in the playlist
     let songUL = document.querySelector(".songList").getElementsByTagName("ul")[0];
     for (const song of songs) {
@@ -93,6 +94,16 @@ async function main() {
             songTime.innerHTML =
                 `${secondsToMinutesSeconds(audio.currentTime)} / ${secondsToMinutesSeconds(audio.duration)}`;
         }
+        document.querySelector(".circle").style.left = `${(audio.currentTime / audio.duration) * 100}%`;
+    });
+
+
+    //! Add an event listener to the seek bar
+    document.querySelector(".seekbar").addEventListener("click", e => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const seekTime = (clickX / rect.width) * audio.duration;
+        audio.currentTime = seekTime;
     });
 }
 
