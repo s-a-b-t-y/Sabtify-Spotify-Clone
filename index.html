@@ -5,109 +5,252 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sabtify || Spotify Clone</title>
+    <meta name="description" content="Sabtify - A beautiful Spotify clone music player with playlist support">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="utility.css">
-    <link rel="stylesheet" href="https://use.hugeicons.com/font/icons.css" />
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <!-- Favicon -->
-    <link rel="shortcut icon" href="./Library/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./Library/favicon.svg" type="image/svg+xml">
 </head>
 
 <body>
-    <div class="container flex bg-black">
-        <div class="left">
-            <div class="home bg-grey rounded m-1 p-1">
-                <div class="logo">
-                    <img class="invert" src="./Library/img/logo.svg" alt="Logo">
-                </div>
-                <ul>
-                    <li><img class="invert" src="./Library/img/home.svg" alt="Home">Home</li>
-                    <li><img class="invert" src="./Library/img/search.svg" alt="Search">Search</li>
-                </ul>
+    <!-- ===== LOADING SCREEN ===== -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader-content">
+            <!-- Animated music disc logo -->
+            <div class="loader-disc">
+                <svg class="loader-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Outer ring -->
+                    <circle cx="60" cy="60" r="56" fill="none" stroke="url(#loaderGrad)" stroke-width="3"
+                        opacity="0.3" />
+                    <!-- Spinning ring -->
+                    <circle cx="60" cy="60" r="56" fill="none" stroke="url(#loaderGrad)" stroke-width="3"
+                        stroke-dasharray="88 264" stroke-linecap="round" class="loader-ring" />
+                    <!-- Inner disc -->
+                    <circle cx="60" cy="60" r="38" fill="#181818" />
+                    <circle cx="60" cy="60" r="38" fill="url(#discGrad)" opacity="0.15" />
+                    <!-- Grooves -->
+                    <circle cx="60" cy="60" r="30" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
+                    <circle cx="60" cy="60" r="24" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
+                    <circle cx="60" cy="60" r="18" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+                    <!-- Center hole -->
+                    <circle cx="60" cy="60" r="6" fill="#1db954" />
+                    <circle cx="60" cy="60" r="3" fill="#121212" />
+                    <!-- Music note -->
+                    <g transform="translate(46, 42)" fill="none" stroke="#1db954" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round" class="loader-note">
+                        <path d="M6 8v18c0 3-2.5 5-5.5 5S-2 29 0 27s3-2 6-2V8" />
+                        <path d="M6 8c0-2 8-5 8-5v6s-8 3-8 5" />
+                        <circle cx="22" cy="14" r="4" fill="none" stroke="#f472b6" stroke-width="2"
+                            class="loader-note2" />
+                    </g>
+                    <!-- Gradient defs -->
+                    <defs>
+                        <linearGradient id="loaderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#1db954" />
+                            <stop offset="100%" stop-color="#f472b6" />
+                        </linearGradient>
+                        <radialGradient id="discGrad" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#1db954" />
+                            <stop offset="100%" stop-color="transparent" />
+                        </radialGradient>
+                    </defs>
+                </svg>
             </div>
-            <div class="library  bg-grey rounded m-1 p-1">
-                <div class="heading">
-                    <img class="invert" src="./Library/img/playlist.svg" alt="Playlist">
-                    <h2>
-                        Your Library
-                    </h2>
-                </div>
-                <div class="songList">
-                    <ul>
-                    </ul>
-                </div>
-                <div class="footer">
-                    <div><a href="https://www.spotify.com/jp/legal/"><span>Legal</span></a></div>
-                    <div><a href="https://www.spotify.com/jp/privacy/"><span>Privacy Center</span></a></div>
-                    <div><a href="https://www.spotify.com/jp/legal/privacy-policy/"><span>Privacy Policy</span></a>
-                    </div>
-                    <div><a href="https://www.spotify.com/jp/legal/cookies-policy/"><span>Cookies</span></a></div>
-                    <div><a href="https://www.spotify.com/jp/legal/privacy-policy/#s3"><span>About Ads</span></a></div>
-                    <div><a href="https://www.spotify.com/jp/accessibility/"><span>Accessibility</span></a></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="right bg-grey rounded">
-            <div class="header">
-                <div class="nav">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
-                        color="currentColor" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M15 6C15 6 9.00001 10.4189 9 12C8.99999 13.5812 15 18 15 18" />
-                    </svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
-                        color="currentColor" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M9.00005 6C9.00005 6 15 10.4189 15 12C15 13.5812 9 18 9 18" />
-                    </svg>
-                </div>
-                <div class="buttons">
-                    <button class="signbtn">Sign Up</button>
-                    <button class="logbtn">Log In</button>
-                </div>
-            </div>
-            <div class="spotifyPlaylist">
-                <h1>Sabtify Playlist</h1>
-                <div class="cardContainer">
-                    <div class="card">
-                        <div class="play">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" width="24" height="24"
-                                fill="none">
-                                <!-- Green circular background -->
-                                <circle cx="14" cy="14" r="14" fill="#22c55e" />
-
-                                <!-- Centered play icon with padding -->
-                                <g transform="translate(6.2 5.8) scale(0.72)">
-                                    <path
-                                        d="M18.8906 12.846C18.5371 14.189 16.8667 15.138 13.5257 17.0361C10.296 18.8709 8.6812 19.7884 7.37983 19.4196C6.8418 19.2671 6.35159 18.9776 5.95624 18.5787C5 17.6139 5 15.7426 5 12C5 8.2574 5 6.3861 5.95624 5.42132C6.35159 5.02245 6.8418 4.73288 7.37983 4.58042C8.6812 4.21165 10.296 5.12907 13.5257 6.96393C16.8667 8.86197 18.5371 9.811 18.8906 11.154C19.0365 11.7084 19.0365 12.2916 18.8906 12.846Z"
-                                        stroke="black" stroke-width="1.5" stroke-linejoin="round" fill="none" />
-                                </g>
-                            </svg>
-                        </div>
-                        <img src="https://i.ytimg.com/vi/PUBaJz8eoRk/sddefault.jpg" alt="Itna nh mujshe tu payar bara picture">
-                        <h2>Itna nh mujshe tu payar bara</h2>
-                        <p>Chhaya</p>
-                    </div>
-                </div>
-                <div class="playbar">
-                    <div class="seekbar">
-                        <div class="circle">
-                        </div>
-                    </div>
-
-                    <div class="aboveBar">
-                        <div class="songInfo"></div>
-                        <div class="songbutton">
-                            <img id="previous" class="invert" src="./Library/img/prevsong.svg">
-                            <img id="play" class="invert" src="./Library/img/play.svg">
-                            <img id="next" class="invert" src="./Library/img/nextsong.svg">
-                        </div>
-                        <div class="songTime"></div>
-                    </div>
-                </div>
+            <div class="loader-text">
+                <span class="loader-brand">Sabtify</span>
+                <span class="loader-dots">
+                    <span>.</span><span>.</span><span>.</span>
+                </span>
             </div>
         </div>
     </div>
+
+    <!-- Mobile Overlay (when sidebar is open) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="app-container" id="appContainer">
+        <!-- ===== SIDEBAR ===== -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-top">
+                <div class="logo-row">
+                    <!-- New SVG Logo (click to reload) -->
+                    <div class="logo-svg-wrap logo-clickable" id="logoClick" role="button" tabindex="0" aria-label="Home - Reload">
+                        <svg class="logo-svg" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#1db954" />
+                                    <stop offset="50%" stop-color="#1ed760" />
+                                    <stop offset="100%" stop-color="#f472b6" />
+                                </linearGradient>
+                            </defs>
+                            <circle cx="20" cy="20" r="18" fill="url(#logoGrad)" />
+                            <!-- Sound waves -->
+                            <rect x="11" y="16" width="3" height="8" rx="1.5" fill="white" class="wave-bar wave-1" />
+                            <rect x="16" y="12" width="3" height="16" rx="1.5" fill="white"
+                                class="wave-bar wave-2" />
+                            <rect x="21" y="14" width="3" height="12" rx="1.5" fill="white"
+                                class="wave-bar wave-3" />
+                            <rect x="26" y="10" width="3" height="20" rx="1.5" fill="white"
+                                class="wave-bar wave-4" />
+                        </svg>
+                    </div>
+                    <span class="logo-text logo-clickable" id="logoText" role="button" tabindex="0" aria-label="Home">Sabtify</span>
+                    <!-- Close button (mobile only) -->
+                    <button class="sidebar-close" id="sidebarClose" aria-label="Close sidebar">
+                        <img class="invert" src="./Library/img/close.svg" alt="Close">
+                    </button>
+                </div>
+                <nav class="nav-links">
+                    <a href="#" class="nav-link active" id="navHome" aria-label="Home">
+                        <img class="invert" src="./Library/img/home.svg" alt="Home">
+                        <span>Home</span>
+                    </a>
+                    <a href="#" class="nav-link" id="navSearch" aria-label="Search">
+                        <img class="invert" src="./Library/img/search.svg" alt="Search">
+                        <span>Search</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="sidebar-library">
+                <div class="library-header">
+                    <img class="invert" src="./Library/img/playlist.svg" alt="Library">
+                    <h2>Your Library</h2>
+                </div>
+                <div class="songList" id="songList">
+                    <ul id="songListUL">
+                        <!-- Songs injected by JS -->
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <a href="https://www.spotify.com/jp/legal/">Legal</a>
+                <a href="https://www.spotify.com/jp/privacy/">Privacy</a>
+                <a href="https://www.spotify.com/jp/legal/privacy-policy/">Policy</a>
+                <a href="https://www.spotify.com/jp/legal/cookies-policy/">Cookies</a>
+                <a href="https://www.spotify.com/jp/accessibility/">Accessibility</a>
+            </div>
+        </aside>
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <main class="main-content" id="mainContent">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <!-- Hamburger (mobile only) -->
+                    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+                        <img class="invert" src="./Library/img/hamburger.svg" alt="Menu">
+                    </button>
+                    <!-- Prev / Next Song arrows -->
+                    <div class="nav-arrows">
+                        <button class="arrow-btn" id="headerPrev" aria-label="Previous song">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M15 6l-6 6 6 6" />
+                            </svg>
+                        </button>
+                        <button class="arrow-btn" id="headerNext" aria-label="Next song">
+                            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 6l6 6-6 6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="btn-signup" id="btnSignup">Sign Up</button>
+                    <button class="btn-login" id="btnLogin">Log In</button>
+                </div>
+            </header>
+
+            <!-- Playlist Section -->
+            <section class="playlist-section">
+                <h1 class="playlist-title">Sabtify Playlist</h1>
+                <div class="card-container" id="cardContainer">
+                    <!-- Cards injected by JS (shuffled on every load) -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- ===== PLAYBAR (Fixed Bottom) ===== -->
+    <div class="playbar" id="playbar">
+        <!-- Song Info -->
+        <div class="playbar-info">
+            <img class="playbar-cover" id="playbarCover" src="./Library/img/cover.jpg" alt="Now Playing">
+            <div class="playbar-text">
+                <span class="playbar-song" id="playbarSong">Select a song</span>
+            </div>
+        </div>
+
+        <!-- Center Controls -->
+        <div class="playbar-controls">
+            <div class="control-buttons">
+                <button class="ctrl-btn" id="btnPrev" aria-label="Previous">
+                    <img class="invert" src="./Library/img/prevsong.svg" alt="Previous">
+                </button>
+                <button class="ctrl-btn play-pause-btn" id="btnPlayPause" aria-label="Play/Pause">
+                    <img class="invert" id="playPauseIcon" src="./Library/img/play.svg" alt="Play">
+                </button>
+                <button class="ctrl-btn" id="btnNext" aria-label="Next">
+                    <img class="invert" src="./Library/img/nextsong.svg" alt="Next">
+                </button>
+            </div>
+            <div class="seekbar-row">
+                <span class="time-label" id="currentTime">00:00</span>
+                <div class="seekbar" id="seekbar">
+                    <div class="seekbar-fill" id="seekbarFill"></div>
+                    <div class="seekbar-circle" id="seekbarCircle"></div>
+                </div>
+                <span class="time-label" id="totalTime">00:00</span>
+            </div>
+        </div>
+
+        <!-- Volume -->
+        <div class="playbar-volume">
+            <button class="ctrl-btn volume-btn" id="btnVolume" aria-label="Toggle mute">
+                <img class="invert" id="volumeIcon" src="./Library/img/volume.svg" alt="Volume">
+            </button>
+            <div class="volume-bar" id="volumeBar">
+                <div class="volume-fill" id="volumeFill"></div>
+                <div class="volume-circle" id="volumeCircle"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== SEARCH MODAL ===== -->
+    <div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search songs">
+        <div class="search-modal">
+            <div class="search-header">
+                <div class="search-input-wrap">
+                    <svg class="search-icon-svg" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                    <input type="text" class="search-input" id="searchInput"
+                        placeholder="Search for songs..." autocomplete="off" spellcheck="false">
+                    <button class="search-clear" id="searchClear" aria-label="Clear search">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+                        </svg>
+                    </button>
+                </div>
+                <button class="search-close-btn" id="searchClose" aria-label="Close search">Close</button>
+            </div>
+            <div class="search-results" id="searchResults">
+                <p class="search-placeholder">Start typing to search songs...</p>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 
